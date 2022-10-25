@@ -1,7 +1,7 @@
 # Building a Greenhouse monitoring
 
 ###### tags: `IoT` `LoRaWAN` `TTN`
-#### By; Jonas Andersson
+#### By: Jonas Andersson
 
 ---
 **Table of Contents**
@@ -27,10 +27,16 @@
 
 
 > Example:
->| IoT Thing | For this         |
+>| Component | Function         |
 >| --------- | ---------------- |
->| Perhaps   | a table          |
->| is a      | jolly good idea? |
+>| Pycom Lopy4 | Microcontroller with MicroPython|
+>| Pycom Expansion board | For connecting things |
+>| Mini breadboard | For connecting things |
+>| BME280 | Sensor with air-temperature, humidity and pressure sensor. Communicates with I2C|
+>| Capacitive Soil Moisture Sensor | For measuring soil moisture. Analog signal. Needs calibrating |
+
+
+
 
 ### Environment setup
 
