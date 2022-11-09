@@ -25,7 +25,7 @@ I decided to make a Greenhouse sensor for surveillance of the temperature and th
 ### Material
 
 >| Component |Cost |Store | Function         |
->| --------- | ---------------- |
+>| --------- | ---- | ------------------------- | --------------------------------------|
 >| Pycom Lopy4 | 38€ | https://www.digikey.se/ | Microcontroller with MicroPython environment|
 >| Pycom Expansion board | 17€ | https://www.digikey.se/ | For connecting things |
 >| Mini breadboard | 3€ | https://www.electrokit.com/ | For connecting more things |
