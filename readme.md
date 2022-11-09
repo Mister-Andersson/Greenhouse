@@ -52,7 +52,7 @@ https://docs.pycom.io/updatefirmware/
 
 ### Putting everything together
 
-![How to connect](./Pictures/Greenhouse sketch.png "How to connect")
+![How to connect](Pictures/Greenhouse_sketch.png)
 
 ### Platforms and infrastructure
 
