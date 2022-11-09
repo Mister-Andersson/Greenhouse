@@ -17,6 +17,7 @@ i2c = I2C(0, I2C.MASTER, baudrate=100000)               # initiate I2C bus
 adc = ADC(0)
 adcpin = adc.channel(pin='P13', attn = ADC.ATTN_11DB)   # create an analog pin on P13, range 0..3.3V
 val = adcpin()                                          # read an analog value
+sleep_time = 600*1000
 
 type_temp = 0x01                                        # Elsys payload format https://www.elsys.se/en/elsys-payload/
 type_rh = 0x02
@@ -29,6 +30,8 @@ bme = BME280.BME280(i2c=i2c)                            # define BME280 sensor
 temp = bme.temperature
 hum = bme.humidity
 pres = bme.pressure
+lora = LoRa(mode=LoRa.LORAWAN, region=LoRa.EU868, device_class=LoRa.CLASS_A)
+
 
 def remap(value, leftMin, leftMax, rightMin, rightMax):
     leftSpan = leftMax - leftMin
@@ -37,15 +40,16 @@ def remap(value, leftMin, leftMax, rightMin, rightMax):
     return rightMin + (valueScaled * rightSpan)
 
 def init_lora():
-  lora = LoRa(mode=LoRa.LORAWAN, region=LoRa.EU868, device_class=LoRa.CLASS_A)
+  lora.nvram_restore()
+  print('DevEui:',ubinascii.hexlify(lora.mac()).upper().decode('utf-8'))
   app_eui = ubinascii.unhexlify(my_app_eui)
   app_key = ubinascii.unhexlify(my_app_key)
-  lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
   while not lora.has_joined():
     time.sleep(2)
     print('Not yet joined...')
+    lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
   print('Joined LoRaWAN network!')
-  print('DevEui:',ubinascii.hexlify(lora.mac()).upper().decode('utf-8'))
+  # print('DevEui:',ubinascii.hexlify(lora.mac()).upper().decode('utf-8'))
 
 
 def send_data():
@@ -56,12 +60,12 @@ def send_data():
   s.setblocking(False)                                                                # make the socket non-blocking
   data = s.recv(64)                                                                   # get any data received (if any...)
   if data:
-    print(data)
+    print("received: {}".format(data))
 
 init_lora()
 
 while True:
-  for i in range(90):
+  for i in range(5):
     bme = BME280.BME280(i2c=i2c)
     temp = bme.temperature//10
     hum = bme.humidity//1024
@@ -74,7 +78,13 @@ while True:
     print('Humidity: ', hum)
     print('Pressure: ', pres)
     print('Soil: ', moist)
-    time.sleep(10)
+    time.sleep(1)
+  print('--------------------')
   print('Sending data...')
   send_data()
   i=0
+  lora.nvram_save()
+  time.sleep(1)
+  print("sleeping for {} ms".format(sleep_time))
+  machine.deepsleep(sleep_time)
+  print("this will never get printed")

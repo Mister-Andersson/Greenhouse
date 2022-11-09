@@ -1,6 +1,6 @@
 # Building a Greenhouse monitoring sensor
 
-###### tags: `MicroPython` `IoT` `LoRaWAN` `TTN` `Home assistant`
+###### tags: `MicroPython` `IoT` `LoRaWAN` `TTN` `Home Assistant`
 #### Author: Jonas Andersson
 #### Course: Applied IoT, 4DV119 (Expertkompetens IoT), Linneus University, 2022
 
@@ -11,9 +11,6 @@
 - [ ] Project Objective
 - [ ] Material
 - [ ] Environment Setup
-- [ ] Title
-
-[TOC]
 
 ### Project Overview
 This tutorial will explain how to build and program the behavior of a device with sensors measuring air temperature, humidity and soil moisture.
@@ -27,13 +24,14 @@ I decided to make a Greenhouse sensor for surveillance of the temperature and th
 
 ### Material
 
->| Component | Function         |
+>| Component |Cost |Store | Function         |
 >| --------- | ---------------- |
->| Pycom Lopy4 | Microcontroller with MicroPython environment|
->| Pycom Expansion board | For connecting things |
->| Mini breadboard | For connecting more things |
->| BME280 | Sensor with air-temperature, humidity and pressure sensor. Communicates over I2C-bus|
->| Capacitive Soil Moisture Sensor | For measuring soil moisture. Analog signal. Needs calibrating. |
+>| Pycom Lopy4 | 38€ | https://www.digikey.se/ | Microcontroller with MicroPython environment|
+>| Pycom Expansion board | 17€ | https://www.digikey.se/ | For connecting things |
+>| Mini breadboard | 3€ | https://www.electrokit.com/ | For connecting more things |
+>| BME280 | 7€ | https://www.amazon.se/ | Sensor with air-temperature, humidity and pressure sensor. Communicates over I2C-bus|
+>| Capacitive Soil Moisture Sensor | 7€ | https://www.amazon.se/ | For measuring soil moisture. Analog signal. Needs calibrating! |
+>| LiPo Battery 3,7V 2200mAh | 10€ | https://www.electrokit.com / | Lithium battery with JST PH 2.0mm connector |
 
 
 
