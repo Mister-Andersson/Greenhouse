@@ -52,6 +52,8 @@ https://docs.pycom.io/updatefirmware/
 
 ### Putting everything together
 
+![How to connect](./Pictures/Greenhouse sketch.png "How to connect")
+
 ### Platforms and infrastructure
 
 ### The code
