@@ -7,10 +7,11 @@
 ---
 **Table of Contents**
 
-- [ ] Project Overview
-- [ ] Project Objective
-- [ ] Material
-- [ ] Environment Setup
+- [Project Overview](#project-overview)
+- [Project Objective](#project-objective)
+- [Material](#material)
+- [Environment Setup](#environment-setup)
+- [Putting everything together](#putting-everything-together)
 
 ### Project Overview
 This tutorial will explain how to build and program the behavior of a device with sensors measuring air temperature, humidity and soil moisture.
@@ -31,7 +32,7 @@ I decided to make a Greenhouse sensor for surveillance of the temperature and th
 >| Mini breadboard | 3€ | https://www.electrokit.com/ | For connecting more things |
 >| BME280 | 7€ | https://www.amazon.se/ | Sensor with air-temperature, humidity and pressure sensor. Communicates over I2C-bus|
 >| Capacitive Soil Moisture Sensor | 7€ | https://www.amazon.se/ | For measuring soil moisture. Analog signal. Needs calibrating! |
->| LiPo Battery 3,7V 2200mAh | 10€ | https://www.electrokit.com / | Lithium battery with JST PH 2.0mm connector |
+>| LiPo Battery 3,7V 2200mAh | 10€ | https://www.electrokit.com/ | Lithium battery with JST PH 2.0mm connector |
 
 
 
@@ -51,17 +52,28 @@ https://docs.pycom.io/updatefirmware/
 
 
 ### Putting everything together
+*work in progress*
 
 ![How to connect](Pictures/Greenhouse_sketch.png)
 
 ### Platforms and infrastructure
+*work in progress*
+
 
 ### The code
+*work in progress*
+
 
 ### The physical network layer
+*work in progress*
+
 
 ### Visualisation and user interface
+*work in progress*
+
 
 ### Finalizing the design
+*work in progress*
+
 
 ---
