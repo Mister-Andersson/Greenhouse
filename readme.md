@@ -77,16 +77,18 @@ https://stackoverflow.com/questions/64744090/how-to-convert-the-adc-output-of-th
 
 After experimenting a bit took the easy way and wrote down the values for the sensor in the air, not touching anything and the values with the sensor in a glass of water. In my case these values where 1230 and 3450. I use them in my code.
 
-
-`def remap(value, leftMin, leftMax, rightMin, rightMax):`
-`    leftSpan = leftMax - leftMin`
-`    rightSpan = rightMax - rightMin`
-`    valueScaled = float(value - leftMin) / float(leftSpan)`
-`    return rightMin + (valueScaled * rightSpan)`
+```
+def remap(value, leftMin, leftMax, rightMin, rightMax):
+    leftSpan = leftMax - leftMin
+    rightSpan = rightMax - rightMin
+    valueScaled = float(value - leftMin) / float(leftSpan)
+    return rightMin + (valueScaled * rightSpan)
+```
 
 And then I use it like this:
-`moist_float = remap(adcpin(), 1230, 3450, 100, 1)`
-
+```
+moist_float = remap(adcpin(), 1230, 3450, 100, 1)
+```
 
 #### The data model
 I have worked a little bit with LoRaWAN devices before and I knew there wasn’t a standardized way of structuring the payload containing my sensor data. I have worked with devices manufactured by a Swedish company named Elsys and I knew they had a simple but solid payload encoding. And they published code examples on their web site! Nice!
@@ -95,18 +97,21 @@ I know this isn’t a hard thing to invent your self but if I would want to send
 https://docs.mydevices.com/docs/lorawan/cayenne-lpp
 
 The data types I’m using in the code
-`type_temp = 0x01`
-`type_rh = 0x02`
-`type_pressure = 0x14`
-`type_ext_temp1 = 0x0c`
-`type_waterleak = 0x12`
-`type_vdd = 0x07`
+```
+type_temp = 0x01
+type_rh = 0x02
+type_pressure = 0x14
+type_ext_temp1 = 0x0c
+type_waterleak = 0x12
+type_vdd = 0x07
+```
 
 I use struct to translate the data to the right 
 https://docs.python.org/3/library/struct.html
 
-`s.send(struct.pack('!bHbBbLbB', type_temp, temp, type_rh, hum, type_pressure, pres, type_waterleak, moist))`
-
+```
+s.send(struct.pack('!bHbBbLbB', type_temp, temp, type_rh, hum, type_pressure, pres, type_waterleak, moist))
+```
 
 
 
