@@ -9,15 +9,13 @@ import ubinascii
 from lora_secrets import my_app_eui
 from lora_secrets import my_app_key
 import BME280
-# from machine import WDT
-# wdt = WDT(timeout=2000)  # enable it with a timeout of 2 seconds
-# wdt.feed()
+
 
 i2c = I2C(0, I2C.MASTER, baudrate=100000)               # initiate I2C bus
 adc = ADC(0)                                            # initiate Analog Digital Channel
 bat_voltage = adc.channel(pin='P16', attn=ADC.ATTN_11DB)
 moisture = adc.channel(pin='P13', attn = ADC.ATTN_11DB)   # create an analog pin on P13, range 0..3.3V
-sleep_time = 600*1000
+sleep_time = 1800*1000
 
 type_temp = 0x01                                        # Elsys payload format https://www.elsys.se/en/elsys-payload/
 type_rh = 0x02
@@ -49,38 +47,35 @@ def init_lora():
     print('Not yet joined...')
     lora.join(activation=LoRa.OTAA, auth=(app_eui, app_key), timeout=0)
   print('Joined LoRaWAN network!')
-  # print('DevEui:',ubinascii.hexlify(lora.mac()).upper().decode('utf-8'))
-
 
 def send_data():
-  s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)                                  # create a LoRa socket
-  s.setsockopt(socket.SOL_LORA, socket.SO_DR, 5)                                      # set the LoRaWAN data rate
-  s.setblocking(True)                                                                 # make the socket blocking
-  s.send(struct.pack('!bHbBbLbBbH', type_temp, temp, type_rh, hum, type_pressure, pres, type_waterleak, moist_percent, type_vdd, vdd))  # send data
-  s.setblocking(False)                                                                # make the socket non-blocking
-  data = s.recv(64)                                                                   # get any data received (if any...)
+  s = socket.socket(socket.AF_LORA, socket.SOCK_RAW)             # create a LoRa socket
+  s.setsockopt(socket.SOL_LORA, socket.SO_DR, 5)                 # set the LoRaWAN data rate
+  s.setblocking(True)                                            # make the socket blocking
+  s.send(struct.pack('!bHbBbLbBbH', type_temp, temp, type_rh, hum, type_pressure, pres, type_waterleak, moist_percent, type_vdd, vdd))
+  s.setblocking(False)                                           # make the socket non-blocking
+  data = s.recv(64)                                              # get any data received (if any...)
   if data:
     print("received: {}".format(data))
 
 init_lora()
 
 while True:
-  for i in range(3):
-    bme = BME280.BME280(i2c=i2c)
-    temp = bme.temperature//10
-    hum = bme.humidity//1024
-    pres = bme.pressure*10
-    moist_float = remap(moisture(), 1230, 3450, 100, 1)                                # calibrated water values
-    moist_percent = int(moist_float)
-    vbat = bat_voltage.voltage()
-    vdd = vbat*2
-    print('--------------------')
-    print('Temperature: ', temp)
-    print('Humidity: ', hum)
-    print('Pressure: ', pres)
-    print('Soil: ', moist_percent)
-    print('Battery voltage:', vbat*2, 'mV')
-    time.sleep(1)
+  bme = BME280.BME280(i2c=i2c)
+  temp = bme.temperature//10
+  hum = bme.humidity//1024
+  pres = bme.pressure*10
+  moist_float = remap(moisture(), 1230, 3450, 100, 1)         # calibrated water values
+  moist_percent = int(moist_float)
+  vbat = bat_voltage.voltage()
+  vdd = vbat*2
+  print('--------------------')
+  print('Temperature: ', temp)
+  print('Humidity: ', hum)
+  print('Pressure: ', pres)
+  print('Soil: ', moist_percent)
+  print('Battery voltage:', vbat*2, 'mV')
+  time.sleep(1)
   print('--------------------')
   print('Sending data...')
   send_data()
