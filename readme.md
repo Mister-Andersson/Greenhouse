@@ -142,6 +142,7 @@ https://www.elsys.se/en/elsys-payload/
 In The Things Stack I use the Payload formatter and the code from Elsys to make a translator for the payload transmitted over LoRaWAN. They have a nice test feature where you can test that the translator works as it should. Nice way of learning as well!
 
 ![The Things Stack Payload formatter](Pictures/Thing_Stack_Payload_formatter.png)
+
 Fig 2. The Things Stack Payload formatter
 
 I know it isn’t a hard thing to invent translator yourself but if I would want to send the data to another platform, I know that Elsys devices are common and there is often a built-in payload decoder for them. I also looked at Cayenne LPP decoder, but the Elsys had more built-in data types to choose from.
@@ -177,11 +178,13 @@ The radio chip used for LoRa is a little bit more expensive than for example a W
 I used Home Assistant for visualization and notification when a limit I reached. I chose this platform because all my other automation in and around my house is handled in that platform. The data is stored in an SQLite database and is purged after 10 days. This is the default setting for Home Assistant and is good for now, but it would be nice to have long term storage as well. 
 
 ![Home Assistant dashboard](Pictures/Home_Assistant_Dashboard.png)
+
 Fig 3. Home Assistant dashboard
 
 For sending notification to my smartphone, I used the automation rule set in Home Assistant. With this tool it is easy to set triggers for when an event is going to happen. There is also the possibility of installing Node Red as a plugin for Home Assistant. This can be even more powerful and is often easy for beginners to use since it is more drag-and-drop than writing.
 
 ![Home Assistant automation](Pictures/Home_Assistant_Automation.png)
+
 Fig 4. Home Assistant automation
 
 ### Finalizing the design
@@ -194,9 +197,11 @@ Right now, its late fall and winter is coming but when spring comes this will be
 Fig 5. The device in the casing I chose
 
 ![The inside of the box](Pictures/Box_inside.jpg)
+
 Fig 6. The inside of the box
 
 ![The Moisture sensor with extra protective heat tube](Pictures/Moisture_sensor.jpg)
+
 Fig 7. The Moisture sensor with extra protective heat tube
 
 ---
