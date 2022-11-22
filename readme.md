@@ -188,8 +188,8 @@ For sending notification to my smartphone, I used the automation rule set in Hom
 Fig 4. Home Assistant automation
 
 ### Finalizing the design
-This was a fun project. I learned a lot about MicroPython even if I only scratched the surface. There is much more to learn and I’m lucking forward to it. 
-I’m thinking of developing this further by controlling the irrigation with data from the moisture sensor. A senor for measuring the temperature in the soil would also be nice. In that case I think I would choose a water resistant DS18B20 with attached cable. They are rather cheep but require a pull-up resistor to work. 
+This was a fun project. I learned a lot about MicroPython even if I only scratched the surface. There is much more to learn and I’m looking forward to it. 
+I’m thinking of developing this further by controlling the irrigation with data from the moisture sensor. A sensor for measuring the temperature in the soil would also be nice. In that case I think I would choose a water resistant DS18B20 with attached cable. They are rather cheep but require a pull-up resistor to work. 
 
 Right now, its late fall and winter is coming but when spring comes this will be tested for real!
 
